@@ -18,10 +18,12 @@ USER pi
 RUN python3 -m venv $PI_HOME
 ENV PATH="$PI_HOME/bin:${PATH}"
 RUN pip3 install --upgrade pip \
-    && pip3 install --no-cache-dir  privacyidea \
+    && pip3 install --no-cache-dir \
     uwsgi \
     pymysql-sa \
     PyMySQL
+RUN pip3 install -r https://raw.githubusercontent.com/privacyidea/privacyidea/v3.6/requirements.txt
+RUN pip3 install privacyidea==3.6
 
 COPY ./app $PI_HOME/app
 

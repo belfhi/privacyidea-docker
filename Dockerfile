@@ -27,5 +27,5 @@ RUN pip3 install privacyidea==3.6
 
 COPY ./app $PI_HOME/app
 
-EXPOSE 3101
+EXPOSE 3031
 CMD ["uwsgi", "app/privacyidea.ini"]

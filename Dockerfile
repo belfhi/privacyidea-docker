@@ -21,7 +21,7 @@ ENV PATH="$PI_HOME/bin:${PATH}"
 RUN pip3 install --upgrade pip \
     && pip3 install --no-cache-dir  privacyidea \
     uwsgi \
-    MySQL-python
+    mariadb
 
 COPY ./app $PI_HOME/app
 

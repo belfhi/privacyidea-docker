@@ -5,6 +5,7 @@ ENV PI_HOME /opt/privacyidea
 RUN apt update  \
   && apt install --no-install-recommends -y \
   build-essential python3-dev \
+  libmysqlclient-dev \
   && apt clean && rm -rf /var/lib/apt/lists/*
   
 RUN mkdir -p $PI_HOME &&  \
@@ -18,8 +19,9 @@ USER pi
 RUN python3 -m venv $PI_HOME
 ENV PATH="$PI_HOME/bin:${PATH}"
 RUN pip3 install --upgrade pip \
-    && pip3 install --no-cache-dir  privacyidea uwsgi
-
+    && pip3 install --no-cache-dir  privacyidea \
+    uwsgi \
+    MySQL-python
 
 COPY ./app $PI_HOME/app
 

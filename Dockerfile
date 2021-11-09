@@ -5,7 +5,6 @@ ENV PI_HOME /opt/privacyidea
 RUN apt update  \
   && apt install --no-install-recommends -y \
   build-essential python3-dev \
-  libmariadb-dev \
   && apt clean && rm -rf /var/lib/apt/lists/*
   
 RUN mkdir -p $PI_HOME &&  \
@@ -21,7 +20,8 @@ ENV PATH="$PI_HOME/bin:${PATH}"
 RUN pip3 install --upgrade pip \
     && pip3 install --no-cache-dir  privacyidea \
     uwsgi \
-    mariadb
+    pymysql-sa \
+    PyMySQL
 
 COPY ./app $PI_HOME/app
 

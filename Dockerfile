@@ -4,7 +4,12 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV PI_HOME /opt/privacyidea
 RUN apt update  \
   && apt install --no-install-recommends -y \
-  build-essential python3-dev libffi-dev libjpeg-dev zlib1g-dev \
+  build-essential \
+  python3-dev \
+  libffi-dev \
+  libjpeg-dev \
+  zlib1g-dev \
+  libpg-dev\
   && apt clean && rm -rf /var/lib/apt/lists/*
   
 RUN mkdir -p $PI_HOME &&  \

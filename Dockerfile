@@ -9,7 +9,7 @@ RUN apt update  \
   libffi-dev \
   libjpeg-dev \
   zlib1g-dev \
-  libpg-dev\
+  libpq-dev\
   && apt clean && rm -rf /var/lib/apt/lists/*
   
 RUN mkdir -p $PI_HOME &&  \

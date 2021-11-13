@@ -1,4 +1,4 @@
-FROM python:3.10-bullseye
+FROM python:3.10-slim-bullseye
 
 ENV DEBIAN_FRONTEND noninteractive 
 ENV PI_HOME /opt/privacyidea
@@ -20,8 +20,7 @@ ENV PATH="$PI_HOME/bin:${PATH}"
 RUN pip3 install --upgrade pip \
     && pip3 install --no-cache-dir \
     uwsgi \
-    pymysql-sa \
-    PyMySQL
+    psycopg2
 RUN pip3 install -r https://raw.githubusercontent.com/privacyidea/privacyidea/v3.6/requirements.txt
 RUN pip3 install privacyidea==3.6
 

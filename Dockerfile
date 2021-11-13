@@ -24,6 +24,7 @@ RUN python3 -m venv $PI_HOME
 ENV PATH="$PI_HOME/bin:${PATH}"
 RUN pip3 install --upgrade pip \
     && pip3 install --no-cache-dir \
+    wheel \
     uwsgi \
     psycopg2
 RUN pip3 install -r https://raw.githubusercontent.com/privacyidea/privacyidea/v3.6/requirements.txt

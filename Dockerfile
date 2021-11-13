@@ -6,9 +6,6 @@ RUN apt update  \
   && apt install --no-install-recommends -y \
   build-essential \
   python3-dev \
-  libffi-dev \
-  libjpeg-dev \
-  zlib1g-dev \
   libpq-dev\
   && apt clean && rm -rf /var/lib/apt/lists/*
   

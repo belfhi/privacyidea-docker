@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bullseye
+FROM python:3.10.5-slim-bullseye
 
 ENV DEBIAN_FRONTEND noninteractive 
 ENV PI_HOME /opt/privacyidea
@@ -27,8 +27,8 @@ RUN pip3 install --upgrade pip \
     wheel \
     uwsgi \
     psycopg2
-RUN pip3 install -r https://raw.githubusercontent.com/privacyidea/privacyidea/v3.6/requirements.txt
-RUN pip3 install privacyidea==3.6
+RUN pip3 install -r https://raw.githubusercontent.com/privacyidea/privacyidea/v3.7/requirements.txt
+RUN pip3 install privacyidea==3.7
 
 COPY ./app $PI_HOME/app
 

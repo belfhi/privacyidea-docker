@@ -1,4 +1,4 @@
-FROM python:3.10.5-slim-bullseye
+FROM python:3.10.9-slim-bullseye
 
 ENV DEBIAN_FRONTEND noninteractive 
 ENV PI_HOME /etc/privacyidea

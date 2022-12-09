@@ -1,7 +1,7 @@
 FROM python:3.10.5-slim-bullseye
 
 ENV DEBIAN_FRONTEND noninteractive 
-ENV PI_HOME /opt/privacyidea
+ENV PI_HOME /etc/privacyidea
 RUN apt update  \
   && apt install --no-install-recommends -y \
   build-essential \
@@ -26,11 +26,15 @@ RUN pip3 install --upgrade pip \
     && pip3 install --no-cache-dir \
     wheel \
     uwsgi \
-    psycopg2
+    psycopg2 \
+    pymysql
 RUN pip3 install -r https://raw.githubusercontent.com/privacyidea/privacyidea/v3.7/requirements.txt
 RUN pip3 install privacyidea==3.7
 
-COPY ./app $PI_HOME/app
+RUN mkdir $PI_HOME/config
+COPY ./app/privacyidea.ini $PI_HOME/
+COPY ./app/privacyideaapp.wsgi $PI_HOME/
+COPY ./app/pi.cfg $PI_HOME/config/
 
 EXPOSE 3031
-CMD ["uwsgi", "app/privacyidea.ini"]
+CMD ["uwsgi", "privacyidea.ini"]

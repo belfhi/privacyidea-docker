@@ -20,9 +20,9 @@ build:
     - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
     - >-
       /kaniko/executor
-      --context=${CI_PROJECT_DIR}
-      --dockerfile=${CI_PROJECT_DIR}/Dockerfile
-      --destination=${CI_REGISTRY_IMAGE}:${tag}
-      --build-arg=${PYTHON_VERSION}
-      --build-arg=${PRIVACYIDEA_VERSION}
+      --context ${CI_PROJECT_DIR}
+      --dockerfile ${CI_PROJECT_DIR}/Dockerfile
+      --destination ${CI_REGISTRY_IMAGE}:${tag}
+      --build-arg PYTHON_VERSION=${PYTHON_VERSION}
+      --build-arg PRIVACYIDEA_VERSION=${PRIVACYIDEA_VERSION}
       --cache=true

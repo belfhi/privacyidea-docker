@@ -32,7 +32,7 @@ RUN pip3 install --upgrade pip \
 
 ARG PRIVACYIDEA_VERSION
 RUN curl -L -O https://github.com/privacyidea/privacyidea/releases/download/v3.8dev3/privacyIDEA-3.8.dev3.tar.gz && tar -xf privacyIDEA-3.8.dev3.tar.gz
-RUN cd privacyIDEA-3.8.dev3 && python3 setup.py install
+RUN cd privacyIDEA-3.8.dev3 && pip3 install -r requirements.txt && python3 setup.py install
 RUN rm -rf privacyIDEA-3.8.dev3
 
 RUN mkdir $PI_HOME/config

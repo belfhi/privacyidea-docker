@@ -31,9 +31,8 @@ RUN pip3 install --upgrade pip \
     psycopg2 
 
 ARG PRIVACYIDEA_VERSION
-RUN pip install -r https://raw.githubusercontent.com/privacyidea/privacyidea/v${PRIVACYIDEA_VERSION}/requirements.txt
-RUN curl -O https://github.com/privacyidea/privacyidea/releases/download/v3.8dev3/privacyIDEA-3.8.dev3-py3-none-any.whl
-RUN pip install privacyIDEA-3.8.dev3-py3-none-any.whl
+RUN curl -O https://github.com/privacyidea/privacyidea/releases/download/v3.8dev3/privacyIDEA-3.8.dev3.tar.gz && tar -xf privacyIDEA-3.8.dev3.tar.gz
+RUN cd privacyIDEA-3.8.dev3 && python3 setup.py install
 
 RUN mkdir $PI_HOME/config
 COPY ./app/privacyidea.ini $PI_HOME/

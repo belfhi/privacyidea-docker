@@ -36,5 +36,5 @@ COPY ./app/privacyidea.ini $PI_HOME/
 COPY ./app/privacyideaapp.wsgi $PI_HOME/
 COPY ./app/pi.cfg $PI_HOME/config/
 
-EXPOSE 3031
+EXPOSE 8080
 CMD ["uwsgi", "privacyidea.ini"]

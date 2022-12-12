@@ -24,4 +24,5 @@ build:
       --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
       --destination "${CI_REGISTRY_IMAGE}:${tag}"
       --build-arg "${PYTHON_VERSION}"
-      --build=arg "${PRIVACYIDEA_VERSION}"
+      --build-arg "${PRIVACYIDEA_VERSION}"
+      --cache true

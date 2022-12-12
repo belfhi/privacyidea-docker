@@ -1,4 +1,5 @@
-FROM python:3.10.9-slim-bullseye
+ARG PYTHON_VERSION
+FROM python:${PYTHON_VERSION}-slim-bullseye
 
 ENV DEBIAN_FRONTEND noninteractive 
 ENV PI_HOME /etc/privacyidea
@@ -26,10 +27,11 @@ RUN pip3 install --upgrade pip \
     && pip3 install --no-cache-dir \
     wheel \
     uwsgi \
-    psycopg2 \
-    pymysql
-RUN pip3 install -r https://raw.githubusercontent.com/privacyidea/privacyidea/v3.7/requirements.txt
-RUN pip3 install privacyidea==3.7
+    psycopg2 
+
+ARG PRIVACYIDEA_VERSION
+RUN pip3 install -r https://raw.githubusercontent.com/privacyidea/privacyidea/v${PRIVACYIDEA_VERSION}/requirements.txt
+RUN pip3 install privacyidea==${PRIVACYIDEA_VERSION}
 
 RUN mkdir $PI_HOME/config
 COPY ./app/privacyidea.ini $PI_HOME/

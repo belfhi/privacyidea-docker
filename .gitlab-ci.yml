@@ -1,3 +1,10 @@
+stages:
+  - build
+
+variables:
+  PYTHON_VERSION: $PYTHON_VERSION
+  PRIVACYIDEA_VERSION: $PRIVACYIDEA_VERSION
+
 build:
   stage: build
   image:
@@ -16,3 +23,5 @@ build:
       --context "${CI_PROJECT_DIR}"
       --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
       --destination "${CI_REGISTRY_IMAGE}:${tag}"
+      --build-arg "${PYTHON_VERSION}"
+      --build=arg "${PRIVACYIDEA_VERSION}"

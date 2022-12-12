@@ -21,17 +21,15 @@ RUN mkdir -p $PI_HOME &&  \
 WORKDIR $PI_HOME
 USER pi
 
+ARG PRIVACYIDEA_VERSION
 RUN python3 -m venv $PI_HOME
 ENV PATH="$PI_HOME/bin:${PATH}"
 RUN pip3 install --upgrade pip \
     && pip3 install --no-cache-dir \
     wheel \
     uwsgi \
-    psycopg2 
-
-ARG PRIVACYIDEA_VERSION
-RUN pip3 install -r https://raw.githubusercontent.com/privacyidea/privacyidea/v${PRIVACYIDEA_VERSION}/requirements.txt
-RUN pip3 install privacyidea==${PRIVACYIDEA_VERSION}
+    psycopg2 \
+    privacyidea==${PRIVACYIDEA_VERSION}
 
 RUN mkdir $PI_HOME/config
 COPY ./app/privacyidea.ini $PI_HOME/

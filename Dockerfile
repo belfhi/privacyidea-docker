@@ -31,11 +31,9 @@ RUN pip3 install --upgrade pip \
     psycopg2 
 
 ARG PRIVACYIDEA_VERSION
-RUN curl -L -O https://github.com/privacyidea/privacyidea/releases/download/v3.8dev3/privacyIDEA-3.8.dev3.tar.gz && tar -xf privacyIDEA-3.8.dev3.tar.gz
-RUN cd privacyIDEA-3.8.dev3 && pip3 install -r requirements.txt && python3 setup.py install
-RUN rm -rf privacyIDEA-3.8.dev3
-RUN curl --create-dirs -o /etc/privacyidea/lib/python3.10/site-packages/privacyIDEA-3.8.dev3-py3.10.egg/privacyidea/static/contrib/js/webauthn-client/pi-webauthn.js \
-  https://raw.githubusercontent.com/privacyidea/webauthn-client/master/pi-webauthn.js
+RUN curl -O https://raw.githubusercontent.com/privacyidea/privacyidea/v${PRIVACYIDEA_VERSION}/requirements.txt
+RUN pip3 install -r requirements.txt
+RUN pip3 install privacyidea==$PRIVACYIDEA_VERSION
 
 RUN mkdir $PI_HOME/config
 COPY ./app/privacyidea.ini $PI_HOME/

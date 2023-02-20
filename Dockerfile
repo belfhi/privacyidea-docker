@@ -29,6 +29,7 @@ RUN pip3 install --upgrade pip \
     wheel \
     uwsgi \
     psycopg2 \
+    gssapi \
     python-logstash-async
 
 ARG PRIVACYIDEA_VERSION

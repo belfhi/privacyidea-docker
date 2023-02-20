@@ -11,6 +11,7 @@ RUN apt update  \
   libjpeg-dev \
   zlib1g-dev \
   libpq-dev\
+  libkrb5-dev \
   curl \
   && apt clean && rm -rf /var/lib/apt/lists/*
   

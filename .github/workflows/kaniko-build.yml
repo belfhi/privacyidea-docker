@@ -6,6 +6,8 @@ on:
       - "main"
     tags:
       - "v*"
+    paths-ignore:
+      - 'README.md'
 
 jobs:
   build:
@@ -29,5 +31,5 @@ jobs:
           cache: true
           cache-repository: ghcr.io/${{ github.repository }}/cache
           build-args: |
-            PYTHON_VERSION=3.10
+            PYTHON_VERSION=3.10.12
             PRIVACYIDEA_VERSION=3.8.1

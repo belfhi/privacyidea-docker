@@ -1,5 +1,5 @@
 ARG PYTHON_VERSION
-FROM python:${PYTHON_VERSION}-slim-bullseye
+FROM python:${PYTHON_VERSION}-slim-bookworm
 
 ENV DEBIAN_FRONTEND noninteractive 
 ENV PI_HOME /etc/privacyidea

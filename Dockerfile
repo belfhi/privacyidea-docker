@@ -12,6 +12,7 @@ RUN apt update  \
   zlib1g-dev \
   libpq-dev\
   libkrb5-dev \
+  libssl-dev \
   curl \
   && apt clean && rm -rf /var/lib/apt/lists/*
   
@@ -26,12 +27,12 @@ USER pi
 RUN python3 -m venv $PI_HOME
 ENV PATH="$PI_HOME/bin:${PATH}"
 RUN pip3 install --upgrade pip \
-    && pip3 install --no-cache-dir \
-    wheel \
-    uwsgi \
-    psycopg2 \
-    gssapi \
-    python-logstash-async
+  && pip3 install --no-cache-dir \
+  wheel \
+  uwsgi \
+  psycopg2 \
+  gssapi \
+  python-logstash-async
 
 ARG PRIVACYIDEA_VERSION
 RUN curl -O https://raw.githubusercontent.com/privacyidea/privacyidea/v${PRIVACYIDEA_VERSION}/requirements.txt

@@ -1,8 +1,8 @@
 ARG PYTHON_VERSION
-FROM python:${PYTHON_VERSION}-slim-bookworm
+FROM python:${PYTHON_VERSION}-slim-bookworm AS builder
 
 ENV DEBIAN_FRONTEND noninteractive 
-ENV PI_HOME /etc/privacyidea
+ENV PI_HOME /app
 RUN apt update  \
   && apt install --no-install-recommends -y \
   build-essential \
@@ -40,9 +40,7 @@ RUN pip3 install -r requirements.txt
 RUN pip3 install privacyidea==$PRIVACYIDEA_VERSION
 
 RUN mkdir $PI_HOME/config
-COPY ./app/privacyidea.ini $PI_HOME/
-COPY ./app/privacyideaapp.wsgi $PI_HOME/
-COPY ./app/pi.cfg $PI_HOME/config/
+COPY ./app/ $PI_HOME/config/
 
 EXPOSE 8080
-CMD ["uwsgi", "privacyidea.ini"]
+CMD ["uwsgi", "config/privacyidea.ini"]
